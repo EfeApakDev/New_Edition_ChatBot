@@ -17,7 +17,7 @@ if is_config:
 else:
     from sample_config import *
 
-luna = Client(
+sakir = Client(
     ":memory:",
     bot_token=bot_token,
     api_id=6,
@@ -28,13 +28,13 @@ bot_id = int(bot_token.split(":")[0])
 arq = None
 
 
-async def lunaQuery(query: str, user_id: int):
+async def sakirQuery(query: str, user_id: int):
     query = (
         query
         if LANGUAGE == "tr"
         else (await arq.translate(query, "tr")).result.translatedText
     )
-    resp = (await arq.luna(query, user_id)).result
+    resp = (await arq.sakir(query, user_id)).result
     return (
         resp
         if LANGUAGE == "tr"
@@ -49,12 +49,12 @@ async def type_and_send(message):
     user_id = message.from_user.id if message.from_user else 0
     query = message.text.strip()
     await message._client.send_chat_action(chat_id, "typing")
-    response, _ = await gather(lunaQuery(query, user_id), sleep(2))
+    response, _ = await gather(sakirQuery(query, user_id), sleep(2))
     await message.reply_text(response)
     await message._client.send_chat_action(chat_id, "cancel")
 
 
-@luna.on_message(filters.command("repo") & ~filters.edited)
+@sakir.on_message(filters.command("repo") & ~filters.edited)
 async def repo(_, message):
     await message.reply_text(
         "[GitHub](nolur.com)"
@@ -63,14 +63,14 @@ async def repo(_, message):
     )
 
 
-@luna.on_message(filters.command("help") & ~filters.edited)
+@sakir.on_message(filters.command("help") & ~filters.edited)
 async def start(_, message):
     await luna.send_chat_action(message.chat.id, "typing")
     await sleep(2)
     await message.reply_text("/repo - Get Repo Link")
 
     
-@luna.on_message(filters.new_chat_members, group=1)
+@sakir.on_message(filters.new_chat_members, group=1)
 async def hg(bot: Client, msg: Message):
     for new_user in msg.new_chat_members:
         if str(new_user.id) == str(Config.bot_token):
@@ -81,7 +81,7 @@ async def hg(bot: Client, msg: Message):
             await msg.reply('İşte bu gelen benim sahibim.')
             
             
-@luna.on_message(filters.command("id"))
+@sakir.on_message(filters.command("id"))
 async def _id(_, message: Message):
     msg = message.reply_to_message or message
     out_str = "**User İnfo:**\n"
@@ -93,7 +93,7 @@ async def _id(_, message: Message):
  
     await message.reply(out_str)
 
-@luna.on_message(filters.command("info"))
+@sakir.on_message(filters.command("info"))
 async def _id(_, message: Message):
     msg = message.reply_to_message or message
     out_str = "**User İnfo:**\n"
@@ -105,7 +105,7 @@ async def _id(_, message: Message):
  
     await message.reply(out_str)
 
-@luna.on_message(filters.command("ping"))
+@sakir.on_message(filters.command("ping"))
 async def pingy(client, message):
     start = datetime.now()
     hmm = await message.reply("Pong!")
@@ -115,7 +115,7 @@ async def pingy(client, message):
         f"█▀█ █▀█ █▄░█ █▀▀ █ \n█▀▀ █▄█ █░▀█ █▄█ ▄\n**Ping: {round(ms)}**")
   
 
-@luna.on_message(
+@sakir.on_message(
     ~filters.private
     & filters.text
     & ~filters.command("help")
@@ -131,7 +131,7 @@ async def chat(_, message):
             return
     else:
         match = re.search(
-            "[.|\n]{0,}luna[.|\n]{0,}",
+            "[.|\n]{0,}sakir[.|\n]{0,}",
             message.text.strip(),
             flags=re.IGNORECASE,
         )
@@ -140,7 +140,7 @@ async def chat(_, message):
     await type_and_send(message)
 
 
-@luna.on_message(
+@sakir.on_message(
     filters.private & ~filters.command("help") & ~filters.edited
 )
 async def chatpm(_, message):
@@ -154,12 +154,12 @@ async def main():
     session = ClientSession()
     arq = ARQ(ARQ_API_BASE_URL, ARQ_API_KEY, session)
 
-    await luna.start()
+    await sakir.start()
     print(
         """
------------------
-| Luna Started! |
------------------
+------------------
+| Herus Başladı!  |
+------------------
 """
     )
     await idle()
