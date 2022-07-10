@@ -24,7 +24,7 @@ sakir = Client(
     api_id=6,
     api_hash="eb06d4abfb49dc3eeb1aeb98ae0f581e",
 )
-
+# şimdi bak karşim bu botu @sakirbey1 yazdı uzaaaaa
 bot_id = int(bot_token.split(":")[0])
 arq = None
 
@@ -81,7 +81,7 @@ async def hg(bot: Client, msg: Message):
         elif str(new_user.id) == str(Config.OWNER_ID):
             await msg.reply('İşte bu gelen benim sahibim.')
             
-            
+        # olm çalma kodları aq    
 @sakir.on_message(filters.command("id"))
 async def _id(_, message: Message):
     msg = message.reply_to_message or message
@@ -149,7 +149,7 @@ async def chatpm(_, message):
         return
     await type_and_send(message)
 
-
+# lan saaaaalğ
 async def main():
     global arq
     session = ClientSession()
@@ -164,7 +164,7 @@ async def main():
 """
     )
     await idle()
-
+# ok
 
 loop = get_event_loop()
 loop.run_until_complete(main())
