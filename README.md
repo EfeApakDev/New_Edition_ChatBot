@@ -1,7 +1,7 @@
-# LunaChatBot
+# HerusChatBot
 Just another Telegram AI chat bot written in Python using Pyrogram.
 
-A public running instance can be found on telegram as [@LunaChatBot](https://t.me/LunaChatBot).
+A public running instance can be found on telegram as [@heruschat_Bot](https://t.me/heruschat_Bot).
 
 <img src="https://hamker.me/knplfa4_luna.jpg" width="200" align="right">
 
@@ -14,7 +14,7 @@ A public running instance can be found on telegram as [@LunaChatBot](https://t.m
 ## Installation
 
 ```sh
-$ git clone https://github.com/thehamkercat/LunaChatBot
+$ git clone https://github.com/SakirBey1/New_Edition_ChatBot
 $ cd LunaChatBot
 $ pip3 install -U -r requirements.txt
 $ cp sample_config.py config.py
