@@ -8,7 +8,6 @@ from Python_ARQ import ARQ
 
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 import pyrogram
-from Config import Config
 from datetime import datetime
 
 is_config = os.path.exists("config.py")
@@ -74,11 +73,11 @@ async def start(_, message):
 @sakir.on_message(filters.new_chat_members, group=1)
 async def hg(bot: Client, msg: Message):
     for new_user in msg.new_chat_members:
-        if str(new_user.id) == str(Config.BOT_ID):
+        if str(new_user.id) == str(BOT_ID):
             await msg.reply(
                 f'''`Hey` {msg.from_user.mention} `beni` {msg.chat.title} `grubuna eklediğin için teşekkürler⚡️`\n\n**Grublarda 10k yakın üye etiketleme özelliğim vardır komutlar için /help yazmanız yeterlidir✨**''')
 
-        elif str(new_user.id) == str(Config.OWNER_ID):
+        elif str(new_user.id) == str(OWNER_ID):
             await msg.reply('İşte bu gelen benim sahibim.')
             
         # olm çalma kodları aq    
