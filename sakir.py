@@ -8,7 +8,6 @@ from Python_ARQ import ARQ
 
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 import pyrogram
-from Config import Config
 from datetime import datetime
 
 is_config = os.path.exists("config.py")
